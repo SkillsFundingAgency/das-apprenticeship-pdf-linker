@@ -1,0 +1,29 @@
+C:\Code\apprenticeshipPDFWorker\ApprenticeshipPDFWorker.Core\bin\Debug\ApprenticeshipPDFWorker.Core.dll
+C:\Code\apprenticeshipPDFWorker\ApprenticeshipPDFWorker.Core\bin\Debug\ApprenticeshipPDFWorker.Core.pdb
+C:\Code\apprenticeshipPDFWorker\ApprenticeshipPDFWorker.Core\obj\Debug\ApprenticeshipPDFWorker.Core.dll
+C:\Code\apprenticeshipPDFWorker\ApprenticeshipPDFWorker.Core\obj\Debug\ApprenticeshipPDFWorker.Core.pdb
+C:\Code\apprenticeshipPDFWorker\ApprenticeshipPDFWorker.Core\obj\Debug\ApprenticeshipPDFWorker.Core.csprojResolveAssemblyReference.cache
+C:\Users\williamsp1\OneDrive for Business\Code\apprenticeshipPDFWorker\ApprenticeshipPDFWorker.Core\bin\Debug\ApprenticeshipPDFWorker.Core.dll
+C:\Users\williamsp1\OneDrive for Business\Code\apprenticeshipPDFWorker\ApprenticeshipPDFWorker.Core\bin\Debug\ApprenticeshipPDFWorker.Core.pdb
+C:\Users\williamsp1\OneDrive for Business\Code\apprenticeshipPDFWorker\ApprenticeshipPDFWorker.Core\obj\Debug\ApprenticeshipPDFWorker.Core.dll
+C:\Users\williamsp1\OneDrive for Business\Code\apprenticeshipPDFWorker\ApprenticeshipPDFWorker.Core\obj\Debug\ApprenticeshipPDFWorker.Core.pdb
+C:\Users\williamsp1\OneDrive for Business\Code\apprenticeshipPDFWorker\ApprenticeshipPDFWorker.Core\bin\Debug\CsvHelper.dll
+C:\Users\williamsp1\OneDrive for Business\Code\apprenticeshipPDFWorker\ApprenticeshipPDFWorker.Core\bin\Debug\CsvHelper.xml
+C:\Users\williamsp1\OneDrive for Business\Code\apprenticeshipPDFWorker\ApprenticeshipPDFWorker.Core\bin\Debug\AngleSharp.dll
+C:\Users\williamsp1\OneDrive for Business\Code\apprenticeshipPDFWorker\ApprenticeshipPDFWorker.Core\bin\Debug\AngleSharp.xml
+C:\Users\williamsp1\OneDrive for Business\Code\apprenticeshipPDFWorker\ApprenticeshipPDFWorker.Core\obj\Debug\ApprenticeshipPDFWorker.Core.csprojResolveAssemblyReference.cache
+C:\Users\williamsp1\OneDrive for Business\Code\apprenticeshipPDFWorker\ApprenticeshipPDFWorker.Core\bin\Debug\Newtonsoft.Json.dll
+C:\Users\williamsp1\OneDrive for Business\Code\apprenticeshipPDFWorker\ApprenticeshipPDFWorker.Core\bin\Debug\Newtonsoft.Json.xml
+C:\FILES FOR MIGRATION!!!!!\apprenticeshipPDFWorker\ApprenticeshipPDFWorker.Core\bin\Debug\ApprenticeshipPDFWorker.Core.dll
+C:\FILES FOR MIGRATION!!!!!\apprenticeshipPDFWorker\ApprenticeshipPDFWorker.Core\bin\Debug\ApprenticeshipPDFWorker.Core.pdb
+C:\FILES FOR MIGRATION!!!!!\apprenticeshipPDFWorker\ApprenticeshipPDFWorker.Core\bin\Debug\AngleSharp.dll
+C:\FILES FOR MIGRATION!!!!!\apprenticeshipPDFWorker\ApprenticeshipPDFWorker.Core\bin\Debug\CsvHelper.dll
+C:\FILES FOR MIGRATION!!!!!\apprenticeshipPDFWorker\ApprenticeshipPDFWorker.Core\bin\Debug\Newtonsoft.Json.dll
+C:\FILES FOR MIGRATION!!!!!\apprenticeshipPDFWorker\ApprenticeshipPDFWorker.Core\bin\Debug\AngleSharp.xml
+C:\FILES FOR MIGRATION!!!!!\apprenticeshipPDFWorker\ApprenticeshipPDFWorker.Core\bin\Debug\CsvHelper.xml
+C:\FILES FOR MIGRATION!!!!!\apprenticeshipPDFWorker\ApprenticeshipPDFWorker.Core\bin\Debug\Newtonsoft.Json.xml
+C:\FILES FOR MIGRATION!!!!!\apprenticeshipPDFWorker\ApprenticeshipPDFWorker.Core\obj\Debug\ApprenticeshipPDFWorker.Core.csprojResolveAssemblyReference.cache
+C:\FILES FOR MIGRATION!!!!!\apprenticeshipPDFWorker\ApprenticeshipPDFWorker.Core\obj\Debug\ApprenticeshipPDFWorker.Core.dll
+C:\FILES FOR MIGRATION!!!!!\apprenticeshipPDFWorker\ApprenticeshipPDFWorker.Core\obj\Debug\ApprenticeshipPDFWorker.Core.pdb
+C:\FILES FOR MIGRATION!!!!!\apprenticeshipPDFWorker\ApprenticeshipPDFWorker.Core\bin\Debug\Dapper.dll
+C:\FILES FOR MIGRATION!!!!!\apprenticeshipPDFWorker\ApprenticeshipPDFWorker.Core\bin\Debug\Dapper.xml
