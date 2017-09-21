@@ -31,7 +31,7 @@ namespace ApprenticeshipPDFWorker.Core.Services
                 var parser = new HtmlParser();
                 var result = parser.Parse(html);
                 var all = result.QuerySelectorAll(selector);
-                return all.Where(x => x.InnerHtml.Contains(textInTitle)).Select(x => x.GetAttribute("href")).ToList();
+                return all.Where(x => x.InnerHtml.Contains(textInTitle)||x.InnerHtml.Contains("Assesment")).Select(x => x.GetAttribute("href")).ToList();
             }
             catch (Exception ex)
             {

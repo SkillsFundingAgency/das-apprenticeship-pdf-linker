@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 
 namespace ApprenticeshipPDFWorker.Core
 {
-    //MUCH OF THIS DOESN'T WORK YET. IT'S ONLY IN THE REPO FOR TRANSFERRING THE PROJECT FROM OLD KIT TO NEW KIT
+
     public class UrlsRepository : IUrlsRepository
     {
         public void Save(IEnumerable<Urls> linkUris)
@@ -140,14 +140,17 @@ namespace ApprenticeshipPDFWorker.Core
             //IMPORTANT! Will only need calling to setup db, shouldn't be called once data is populated.
         public void Save(IEnumerable<Urls> linkUris)
         {
-           /* var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["GovUk"].ConnectionString);
+            /* This comment block contains the code to originally populate the database. Should probably put some conditional
+               code in place to check if the db has been populated, and run the correct code.
+             
+            var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["GovUk"].ConnectionString);
             connection.Open();
             foreach (var source in linkUris)
             {
                 connection.Execute("INSERT INTO TestTable (StandardID, StandardUrl, AssessmentUrl) VALUES (@StandardCode, @StandardUrl, @AssessmentUrl)", source);
             }
-            connection.Close();
-            */
+            connection.Close();*/
+            
             DisplayData(linkUris);
         }
 
