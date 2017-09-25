@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using ApprenticeshipPDFWorker.Core.Models;
 using Dapper;
 using Newtonsoft.Json;
@@ -34,31 +35,13 @@ namespace ApprenticeshipPDFWorker.Core
         }
     }
 
-    public class DatabaseRepository : IUrlsRepository {
-
-        // kinda poor method to enter items into the DB
-       /* public void Save2(IEnumerable<Urls> linkUris)
-        {
-            var connection = new SqlConnection("Server=.\\SQLEXPRESS;Database=GovUkApprenticeships;Trusted_Connection=True;");
-            connection.Open();
-            //connection.Execute("INSERT INTO Test2 (Value) VALUES (@Value)")
-            foreach (var source in linkUris.Take(5))
-            {
-                var command = connection.CreateCommand();
-                command.CommandText = $"INSERT INTO Test2 (Value) VALUES (@Value)";
-                command.CommandType = CommandType.Text;
-                command.Parameters.AddWithValue("Value", source.StandardUrl);
-                command.ExecuteNonQuery();
-            }
-            connection.Close();
-        }*/
-
-        // Method to read from DB and CW all entries
+    public class DatabaseRepository : IUrlsRepository
+    {
+        List<Urls> updateList = new List<Urls>();
         public void DisplayData(IEnumerable<Urls> linkUris)
         {
             var newDataList = linkUris.AsList();
             var databaseLinksList = new List<string>();
-            var linkList = new List<string>();
             var connection = new SqlConnection("Server=.\\SQLEXPRESS;Database=GovUkApprenticeships;Trusted_Connection=True;MultipleActiveResultSets=True;");
             connection.Open();
             var command = connection.CreateCommand();
@@ -69,22 +52,15 @@ namespace ApprenticeshipPDFWorker.Core
             {
                 databaseLinksList.Add(reader[1].ToString());
             }
-            if (CompareStandardUrls(databaseLinksList, newDataList))
+            if (CompareStandardUrls(databaseLinksList, newDataList)|| CompareAssessmentUrls(databaseLinksList, newDataList))
             {
                 Console.WriteLine("Needs updating");
+                UpdateDatabase(newDataList);
             }
-
-            databaseLinksList.Clear();
-            while (reader.Read())
+            else
             {
-                databaseLinksList.Add(reader[2].ToString());
+                Console.WriteLine("doesn't need updating");
             }
-
-            if (CompareAssessmentUrls(databaseLinksList, newDataList))
-            {
-                Console.WriteLine("Needs updating");
-            }
-
             connection.Close();
         }
 
@@ -96,6 +72,7 @@ namespace ApprenticeshipPDFWorker.Core
                 if (storedLink[i] != newLink.ElementAt(i).StandardUrl)
                 {
                     needsUpdating = true;
+                    updateList.Add(newLink.ElementAt(i));
                 }
             }
             return needsUpdating;   
@@ -109,26 +86,40 @@ namespace ApprenticeshipPDFWorker.Core
                 if (storedLink[i] != newLink.ElementAt(i).StandardUrl)
                 {
                     needsUpdating = true;
+                    updateList.Add(newLink.ElementAt(i));
                 }
             }
             return needsUpdating;
         }
 
-        //method enters standard code, url and assment url into db
-        //IMPORTANT! Will only need calling to setup db, shouldn't be called once data is populated.
-        public void Save(IEnumerable<Urls> linkUris)
+        public void UpdateDatabase(IEnumerable<Urls> linkUris)
         {
-            /* This comment block contains the code to originally populate the database. Should probably put some conditional
-               code in place to check if the db has been populated, and run the correct code.
-             
             var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["GovUk"].ConnectionString);
             connection.Open();
-            foreach (var source in linkUris)
+            //string sqlTrunc = "TRUNCATE TABLE " + "TestTable";
+            //var cmd = new SqlCommand(sqlTrunc, connection);
+            //cmd.ExecuteNonQuery();
+            foreach (var source in updateList)    
             {
-                connection.Execute("INSERT INTO TestTable (StandardID, StandardUrl, AssessmentUrl) VALUES (@StandardCode, @StandardUrl, @AssessmentUrl)", source);
+                int standardCode = Convert.ToInt32(source.StandardCode);
+                //the update code doesn't current;y work, will fix tomorrow
+                connection.Execute("UPDATE TestTable SET StandardUrl='source.StandardUrl' WHERE StandardId='standardCode'", source);
             }
-            connection.Close();*/
-            
+            connection.Close();
+        }
+        public void Save(IEnumerable<Urls> linkUris)
+        {
+            //This comment block contains the code to originally populate the database. Should probably put some conditional
+            //  code in place to check if the db has been populated, and run the correct code.
+
+            //var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["GovUk"].ConnectionString);
+            //connection.Open();
+            //foreach (var source in linkUris)
+            //{
+            //    connection.Execute("INSERT INTO TestTable (StandardID, StandardUrl, AssessmentUrl) VALUES (@StandardCode, @StandardUrl, @AssessmentUrl)", source);
+            //}
+            //connection.Close();
+
             DisplayData(linkUris);
         }
 
@@ -143,5 +134,7 @@ namespace ApprenticeshipPDFWorker.Core
          * SET StandardUrl='source.StandardUrl'
          * WHERE StandardId='source.StandardId';
          */
+
+
     }
 }
