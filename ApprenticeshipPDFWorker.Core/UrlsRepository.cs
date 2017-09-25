@@ -56,14 +56,9 @@ namespace ApprenticeshipPDFWorker.Core
         // Method to read from DB and CW all entries
         public void DisplayData(IEnumerable<Urls> linkUris)
         {
-            //int incrementer = 0;
-            var poop = linkUris.AsList();
-            var blah = new List<string>();
+            var newDataList = linkUris.AsList();
+            var databaseLinksList = new List<string>();
             var linkList = new List<string>();
-            //for (int i = 0; i < linkUris.AsList().Count; i++)
-            //{
-            //    linkList.Add(linkUris.ElementAt(i).StandardUrl);
-            //}
             var connection = new SqlConnection("Server=.\\SQLEXPRESS;Database=GovUkApprenticeships;Trusted_Connection=True;MultipleActiveResultSets=True;");
             connection.Open();
             var command = connection.CreateCommand();
@@ -72,63 +67,33 @@ namespace ApprenticeshipPDFWorker.Core
             var reader = command.ExecuteReader();
             while (reader.Read())
             {
-                string foo = reader[1].ToString();
-                blah.Add(foo);
-                
-                
-                
-                /*
-                string foo = reader[1].ToString();
-                string poo = linkUris.ElementAt(incrementer).StandardUrl.ToString();
-                 if (poo != foo)
-                 {
-                     var blah = connection.CreateCommand();
-                     blah.CommandType = CommandType.Text;
-                     blah.CommandText = //doesn't work
-                         "UPDATE TestTable SET [StandardUrl] = @StandardUrl WHERE StandardId = @StandardId ";
-                     blah.Parameters.AddWithValue("@StandardUrl", poo);
-                     blah.Parameters.AddWithValue("@StandardId", linkUris.ElementAt(incrementer).StandardCode);
-                     blah.Connection = connection;
-                     blah.ExecuteNonQuery();
-                    
-                 }
-                
-                if (reader[2].ToString() != linkUris.ElementAt(incrementer).AssessmentUrl.ToString())
-                {
-                    SqlCommand blah = new SqlCommand();
-                    blah.CommandType = CommandType.Text;
-                    blah.CommandText = //probably doesn't work
-                        "UPDATE TestTable SET [AssessmentUrl] = @AssessmentUrl WHERE StandardId = @StandardId ";
-                    blah.Parameters.AddWithValue("@AssessmentUrl", linkUris.ElementAt(incrementer).AssessmentUrl);
-                    blah.Parameters.AddWithValue("@StandardId", linkUris.ElementAt(incrementer).StandardCode);
-                    blah.Connection = connection;
-                    blah.ExecuteNonQuery();
-                    blah.Connection.Close();
-                }
-                incrementer += 1;
-                
-             // Console.WriteLine(reader[0]);
-             //Console.WriteLine(reader[1]);
-             //Console.WriteLine(reader[2]);
-             */
+                databaseLinksList.Add(reader[1].ToString());
             }
-            if (CompareData(blah, linkUris))
+            if (CompareStandardUrls(databaseLinksList, newDataList))
             {
                 Console.WriteLine("Needs updating");
             }
-            else
+
+            databaseLinksList.Clear();
+            while (reader.Read())
             {
-                Console.WriteLine("doesn't need updating");
+                databaseLinksList.Add(reader[2].ToString());
             }
+
+            if (CompareAssessmentUrls(databaseLinksList, newDataList))
+            {
+                Console.WriteLine("Needs updating");
+            }
+
             connection.Close();
         }
 
-        public Boolean CompareData(List<string> blah, IEnumerable<Urls> linkUris)
+        public Boolean CompareStandardUrls(List<string> storedLink, IEnumerable<Urls> newLink)
         {
             Boolean needsUpdating = false;
-            for (int i = 0; i < blah.Count; i++)
+            for (int i = 0; i < storedLink.Count; i++)
             {
-                if (blah[i] != linkUris.ElementAt(i).StandardUrl)
+                if (storedLink[i] != newLink.ElementAt(i).StandardUrl)
                 {
                     needsUpdating = true;
                 }
@@ -136,8 +101,21 @@ namespace ApprenticeshipPDFWorker.Core
             return needsUpdating;   
         }
 
-            //method enters standard code, url and assment url into db
-            //IMPORTANT! Will only need calling to setup db, shouldn't be called once data is populated.
+        public Boolean CompareAssessmentUrls(List<string> storedLink, IEnumerable<Urls> newLink)
+        {
+            Boolean needsUpdating = false;
+            for (int i = 0; i < storedLink.Count; i++)
+            {
+                if (storedLink[i] != newLink.ElementAt(i).StandardUrl)
+                {
+                    needsUpdating = true;
+                }
+            }
+            return needsUpdating;
+        }
+
+        //method enters standard code, url and assment url into db
+        //IMPORTANT! Will only need calling to setup db, shouldn't be called once data is populated.
         public void Save(IEnumerable<Urls> linkUris)
         {
             /* This comment block contains the code to originally populate the database. Should probably put some conditional
