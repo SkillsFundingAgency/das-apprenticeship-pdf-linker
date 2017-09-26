@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading;
 using ApprenticeshipPDFWorker.Core.Models;
 using Dapper;
 using Newtonsoft.Json;
@@ -112,29 +113,50 @@ namespace ApprenticeshipPDFWorker.Core
         }
         public void Save(IEnumerable<Urls> linkUris)
         {
-            //This comment block contains the code to originally populate the database. Should probably put some conditional
-            //  code in place to check if the db has been populated, and run the correct code.
+            if (IsDatabaseEmpty())
+                PopulateEnptyDatabase(linkUris);
+            else
+                DisplayData(linkUris);
+        }
 
-            //var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["GovUk"].ConnectionString);
-            //connection.Open();
-            //string sqlTrunc = "TRUNCATE TABLE " + "PdfTable";
-            //SqlCommand cmd = new SqlCommand(sqlTrunc, connection);
-            //cmd.ExecuteNonQuery();
-            //foreach (var source in linkUris)
-            //{
-            //    using (SqlCommand command = connection.CreateCommand())
-            //    {
-            //        command.CommandText = "INSERT INTO PdfTable (StandardId, StandardUrl, AssessmentUrl, DateSeen) VALUES (@stdCode, @stdUrl, @assUrl, @dateSeen)";
-            //        command.Parameters.AddWithValue("@stdCode", source.StandardCode);
-            //        command.Parameters.AddWithValue("@stdUrl", source.StandardUrl);
-            //        command.Parameters.AddWithValue("@assUrl", source.AssessmentUrl);
-            //        command.Parameters.AddWithValue("@dateSeen", DateTime.Now);
-            //        command.ExecuteNonQuery();
-            //    }
-            //}
-            //connection.Close();
+        public void PopulateEnptyDatabase(IEnumerable<Urls> linkUris)
+        {
+            var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["GovUk"].ConnectionString);
+            connection.Open();
+            string sqlTrunc = "TRUNCATE TABLE " + "PdfTable";
+            SqlCommand cmd = new SqlCommand(sqlTrunc, connection);
+            cmd.ExecuteNonQuery();
+            foreach (var source in linkUris)
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "INSERT INTO PdfTable (StandardId, StandardUrl, AssessmentUrl, DateSeen) VALUES (@stdCode, @stdUrl, @assUrl, @dateSeen)";
+                    command.Parameters.AddWithValue("@stdCode", source.StandardCode);
+                    command.Parameters.AddWithValue("@stdUrl", source.StandardUrl);
+                    command.Parameters.AddWithValue("@assUrl", source.AssessmentUrl);
+                    command.Parameters.AddWithValue("@dateSeen", DateTime.Now);
+                    command.ExecuteNonQuery();
+                }
+            }
+            connection.Close();
+        }
 
-            DisplayData(linkUris);
+        public bool IsDatabaseEmpty()
+        {
+            int count;
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["GovUk"].ConnectionString))
+            {
+                string numberOfRows = "select count(*) from PdfTable";
+
+                SqlCommand myCommand = new SqlCommand(numberOfRows, connection);
+                myCommand.Connection.Open();
+                count = (int) myCommand.ExecuteScalar();
+                connection.Close();
+            }
+            if (count != 0)
+                return false;
+            else
+                return true;
         }
     }
 }
