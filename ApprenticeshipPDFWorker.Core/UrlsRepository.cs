@@ -41,7 +41,8 @@ namespace ApprenticeshipPDFWorker.Core
         public void DisplayData(IEnumerable<Urls> linkUris)
         {
             var newDataList = linkUris.AsList();
-            var databaseLinksList = new List<string>();
+            var databaseStandardUrlList = new List<string>();
+            var databaseAssessmentUrlList = new List<string>();
             var connection = new SqlConnection("Server=.\\SQLEXPRESS;Database=GovUkApprenticeships;Trusted_Connection=True;MultipleActiveResultSets=True;");
             connection.Open();
             var command = connection.CreateCommand();
@@ -50,9 +51,10 @@ namespace ApprenticeshipPDFWorker.Core
             var reader = command.ExecuteReader();
             while (reader.Read())
             {
-                databaseLinksList.Add(reader[1].ToString());
+                databaseStandardUrlList.Add(reader[1].ToString());
+                databaseAssessmentUrlList.Add(reader[2].ToString());
             }
-            if (CompareStandardUrls(databaseLinksList, newDataList)|| CompareAssessmentUrls(databaseLinksList, newDataList))
+            if (CompareStandardUrls(databaseStandardUrlList, newDataList)|| CompareAssessmentUrls(databaseAssessmentUrlList, newDataList))
             {
                 Console.WriteLine("Needs updating");
                 UpdateDatabase(newDataList);
@@ -96,14 +98,19 @@ namespace ApprenticeshipPDFWorker.Core
         {
             var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["GovUk"].ConnectionString);
             connection.Open();
-            //string sqlTrunc = "TRUNCATE TABLE " + "TestTable";
-            //var cmd = new SqlCommand(sqlTrunc, connection);
-            //cmd.ExecuteNonQuery();
             foreach (var source in updateList)    
             {
                 int standardCode = Convert.ToInt32(source.StandardCode);
                 //the update code doesn't current;y work, will fix tomorrow
-                connection.Execute("UPDATE TestTable SET StandardUrl='source.StandardUrl' WHERE StandardId='standardCode'", source);
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "UPDATE TestTable SET StandardUrl=@stdUrl, AssessmentUrl = @assUrl WHERE StandardId =@stdId";
+                    command.Parameters.AddWithValue("@stdUrl", source.StandardUrl);
+                    command.Parameters.AddWithValue("@assUrl", source.AssessmentUrl);
+                    command.Parameters.AddWithValue("@stdId", source.StandardCode);
+
+                    command.ExecuteNonQuery();
+                }
             }
             connection.Close();
         }
@@ -122,19 +129,5 @@ namespace ApprenticeshipPDFWorker.Core
 
             DisplayData(linkUris);
         }
-
-
-        /* Code for changing a row:
-         * UPDATE tableName
-         * SET column='newData'
-         * WHERE 'conditon';
-         * 
-         * For example, once confirmed that the url needs updating
-         * UPDATE TestTable
-         * SET StandardUrl='source.StandardUrl'
-         * WHERE StandardId='source.StandardId';
-         */
-
-
     }
 }
