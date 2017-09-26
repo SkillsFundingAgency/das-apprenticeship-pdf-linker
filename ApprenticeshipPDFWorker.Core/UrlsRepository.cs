@@ -46,22 +46,17 @@ namespace ApprenticeshipPDFWorker.Core
             var connection = new SqlConnection("Server=.\\SQLEXPRESS;Database=GovUkApprenticeships;Trusted_Connection=True;MultipleActiveResultSets=True;");
             connection.Open();
             var command = connection.CreateCommand();
-            command.CommandText = "SELECT * FROM TestTable";
+            command.CommandText = "SELECT * FROM PdfTable";
             command.CommandType = CommandType.Text;
             var reader = command.ExecuteReader();
             while (reader.Read())
             {
-                databaseStandardUrlList.Add(reader[1].ToString());
-                databaseAssessmentUrlList.Add(reader[2].ToString());
+                databaseStandardUrlList.Add(reader[2].ToString());
+                databaseAssessmentUrlList.Add(reader[3].ToString());
             }
             if (CompareStandardUrls(databaseStandardUrlList, newDataList)|| CompareAssessmentUrls(databaseAssessmentUrlList, newDataList))
             {
-                Console.WriteLine("Needs updating");
                 UpdateDatabase(newDataList);
-            }
-            else
-            {
-                Console.WriteLine("doesn't need updating");
             }
             connection.Close();
         }
@@ -85,7 +80,7 @@ namespace ApprenticeshipPDFWorker.Core
             Boolean needsUpdating = false;
             for (int i = 0; i < storedLink.Count; i++)
             {
-                if (storedLink[i] != newLink.ElementAt(i).StandardUrl)
+                if (storedLink[i] != newLink.ElementAt(i).AssessmentUrl)
                 {
                     needsUpdating = true;
                     updateList.Add(newLink.ElementAt(i));
@@ -104,9 +99,10 @@ namespace ApprenticeshipPDFWorker.Core
                 //the update code doesn't current;y work, will fix tomorrow
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = "UPDATE TestTable SET StandardUrl=@stdUrl, AssessmentUrl = @assUrl WHERE StandardId =@stdId";
+                    command.CommandText = "UPDATE PdfTable SET StandardUrl=@stdUrl, AssessmentUrl = @assUrl, DateSeen = @dateSeen WHERE StandardId =@stdId";
                     command.Parameters.AddWithValue("@stdUrl", source.StandardUrl);
                     command.Parameters.AddWithValue("@assUrl", source.AssessmentUrl);
+                    command.Parameters.AddWithValue("@dateseen", DateTime.Now);
                     command.Parameters.AddWithValue("@stdId", source.StandardCode);
 
                     command.ExecuteNonQuery();
@@ -121,9 +117,20 @@ namespace ApprenticeshipPDFWorker.Core
 
             //var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["GovUk"].ConnectionString);
             //connection.Open();
+            //string sqlTrunc = "TRUNCATE TABLE " + "PdfTable";
+            //SqlCommand cmd = new SqlCommand(sqlTrunc, connection);
+            //cmd.ExecuteNonQuery();
             //foreach (var source in linkUris)
             //{
-            //    connection.Execute("INSERT INTO TestTable (StandardID, StandardUrl, AssessmentUrl) VALUES (@StandardCode, @StandardUrl, @AssessmentUrl)", source);
+            //    using (SqlCommand command = connection.CreateCommand())
+            //    {
+            //        command.CommandText = "INSERT INTO PdfTable (StandardId, StandardUrl, AssessmentUrl, DateSeen) VALUES (@stdCode, @stdUrl, @assUrl, @dateSeen)";
+            //        command.Parameters.AddWithValue("@stdCode", source.StandardCode);
+            //        command.Parameters.AddWithValue("@stdUrl", source.StandardUrl);
+            //        command.Parameters.AddWithValue("@assUrl", source.AssessmentUrl);
+            //        command.Parameters.AddWithValue("@dateSeen", DateTime.Now);
+            //        command.ExecuteNonQuery();
+            //    }
             //}
             //connection.Close();
 
