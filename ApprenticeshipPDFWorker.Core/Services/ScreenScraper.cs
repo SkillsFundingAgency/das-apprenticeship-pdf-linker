@@ -6,6 +6,8 @@ using ApprenticeshipPDFWorker.Core.Models;
 
 namespace ApprenticeshipPDFWorker.Core.Services
 {
+    // Class to scrape screens for urls
+
     public class ScreenScraper
     {
         public string GetLinkUri(string html, string linkTitle)
@@ -25,6 +27,8 @@ namespace ApprenticeshipPDFWorker.Core.Services
                 var parser = new HtmlParser();
                 var result = parser.Parse(html);
                 var all = result.QuerySelectorAll(selector);
+
+            // Return Where value pulls based on a link (attribute "href") contanining the correct keyword
                 return all.Where(x => x.InnerHtml.Contains(textInTitle)||x.InnerHtml.Contains("Assesment")).Select(x => x.GetAttribute("href")).ToList();
             }
 
