@@ -5,8 +5,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading;
 using ApprenticeshipPDFWorker.Core.Models;
 using Dapper;
 using Newtonsoft.Json;
@@ -20,9 +18,9 @@ namespace ApprenticeshipPDFWorker.Core
         {
             foreach (var item in linkUris)
             {
-                System.Console.WriteLine(item.StandardCode);
-                System.Console.WriteLine(item.StandardUrl);
-                System.Console.WriteLine(item.AssessmentUrl);
+                Console.WriteLine(item.StandardCode);
+                Console.WriteLine(item.StandardUrl);
+                Console.WriteLine(item.AssessmentUrl);
             }
         }
     }
@@ -96,7 +94,6 @@ namespace ApprenticeshipPDFWorker.Core
             connection.Open();
             foreach (var source in updateList)    
             {
-                int standardCode = Convert.ToInt32(source.StandardCode);
                 //the update code doesn't current;y work, will fix tomorrow
                 using (SqlCommand command = connection.CreateCommand())
                 {

@@ -30,8 +30,7 @@ namespace ApprenticeshipPDFWorker.UnitTest.Services
 
             // Assert
             Assert.AreEqual(expected.First().StandardCode, actual.First().StandardCode);
-            //currently failing, because .StandardCode doesn't have an object definition.
-            Assert.AreEqual(expected.Count, actual.Count());
+            Assert.AreEqual(expected.Count, actual.Count);
         }
 
 
@@ -75,7 +74,7 @@ namespace ApprenticeshipPDFWorker.UnitTest.Services
             var urlList = UrlListWorker(csvData).ToList();
 
             // Assert
-            for (int i = 0; i < csvData.Count(); i++)
+            for (int i = 0; i < csvData.Count; i++)
             {
                 Assert.AreEqual(csvData[i].UrlLink, urlList[i]);
             }

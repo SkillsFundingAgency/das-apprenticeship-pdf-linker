@@ -26,7 +26,7 @@ namespace ApprenticeshipPDFWorker.UnitTest.Services
                 Console.WriteLine(i);
             }
 
-            Console.WriteLine($"Returned {list.Count()} rows");
+            Console.WriteLine($"Returned {list.Count} rows");
         }
 
         [Test]

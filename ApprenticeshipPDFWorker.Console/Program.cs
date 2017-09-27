@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using ApprenticeshipPDFWorker.Core;
-using ApprenticeshipPDFWorker.Core.Models;
+﻿using ApprenticeshipPDFWorker.Core;
 
 namespace ApprenticeshipPDFWorker.Console
 {
