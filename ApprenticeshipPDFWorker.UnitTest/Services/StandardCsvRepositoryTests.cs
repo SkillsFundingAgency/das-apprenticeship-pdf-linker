@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using ApprenticeshipPDFWorker.Core;
 using ApprenticeshipPDFWorker.Core.Models;
 using ApprenticeshipPDFWorker.Core.Services;
 using NUnit.Framework;
@@ -50,7 +51,7 @@ namespace ApprenticeshipPDFWorker.UnitTest.Services
             var sut = new StandardCsvRepository();
 
             // Act
-            var csvData = sut.Read(FileName);
+            var csvData = sut.Read(FileName).ToArray();
 
             //Assert
             Assert.AreEqual(162, csvData.Count());
@@ -65,7 +66,6 @@ namespace ApprenticeshipPDFWorker.UnitTest.Services
         }
 
         [Test]
-        [Ignore("")]
         public void CompareCsvUrlDataToUrlListData()
         {
             // Arrange

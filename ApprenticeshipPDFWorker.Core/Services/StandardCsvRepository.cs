@@ -5,7 +5,7 @@ using CsvHelper;
 
 namespace ApprenticeshipPDFWorker.Core.Services
 {
-    public class StandardCsvRepository
+    public class StandardCsvRepository : IStandardCsvRepository
     {
         // Method to read data from csv file
         public IEnumerable<CsvStandardRow> Read(string fileName)

@@ -1,0 +1,16 @@
+C:\Projects\das-apprenticeship-pdf-linker\ApprenticeshipPDFWorker.CoreTests\bin\Debug\ApprenticeshipPDFWorker.CoreTests.dll
+C:\Projects\das-apprenticeship-pdf-linker\ApprenticeshipPDFWorker.CoreTests\bin\Debug\ApprenticeshipPDFWorker.CoreTests.pdb
+C:\Projects\das-apprenticeship-pdf-linker\ApprenticeshipPDFWorker.CoreTests\bin\Debug\ApprenticeshipPDFWorker.Core.dll
+C:\Projects\das-apprenticeship-pdf-linker\ApprenticeshipPDFWorker.CoreTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Projects\das-apprenticeship-pdf-linker\ApprenticeshipPDFWorker.CoreTests\bin\Debug\AngleSharp.dll
+C:\Projects\das-apprenticeship-pdf-linker\ApprenticeshipPDFWorker.CoreTests\bin\Debug\CsvHelper.dll
+C:\Projects\das-apprenticeship-pdf-linker\ApprenticeshipPDFWorker.CoreTests\bin\Debug\Dapper.dll
+C:\Projects\das-apprenticeship-pdf-linker\ApprenticeshipPDFWorker.CoreTests\bin\Debug\ApprenticeshipPDFWorker.Core.pdb
+C:\Projects\das-apprenticeship-pdf-linker\ApprenticeshipPDFWorker.CoreTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+C:\Projects\das-apprenticeship-pdf-linker\ApprenticeshipPDFWorker.CoreTests\bin\Debug\AngleSharp.xml
+C:\Projects\das-apprenticeship-pdf-linker\ApprenticeshipPDFWorker.CoreTests\bin\Debug\CsvHelper.xml
+C:\Projects\das-apprenticeship-pdf-linker\ApprenticeshipPDFWorker.CoreTests\bin\Debug\Dapper.xml
+C:\Projects\das-apprenticeship-pdf-linker\ApprenticeshipPDFWorker.CoreTests\obj\Debug\ApprenticeshipPDFWorker.CoreTests.csprojResolveAssemblyReference.cache
+C:\Projects\das-apprenticeship-pdf-linker\ApprenticeshipPDFWorker.CoreTests\obj\Debug\ApprenticeshipPDFWorker.CoreTests.dll
+C:\Projects\das-apprenticeship-pdf-linker\ApprenticeshipPDFWorker.CoreTests\obj\Debug\ApprenticeshipPDFWorker.CoreTests.pdb
+C:\Projects\das-apprenticeship-pdf-linker\ApprenticeshipPDFWorker.CoreTests\bin\Debug\DatabaseRepository.cs

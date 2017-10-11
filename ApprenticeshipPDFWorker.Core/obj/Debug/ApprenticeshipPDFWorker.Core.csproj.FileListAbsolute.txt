@@ -40,3 +40,4 @@ C:\Projects\das-apprenticeship-pdf-linker\ApprenticeshipPDFWorker.Core\bin\Debug
 C:\Projects\das-apprenticeship-pdf-linker\ApprenticeshipPDFWorker.Core\obj\Debug\ApprenticeshipPDFWorker.Core.csprojResolveAssemblyReference.cache
 C:\Projects\das-apprenticeship-pdf-linker\ApprenticeshipPDFWorker.Core\obj\Debug\ApprenticeshipPDFWorker.Core.dll
 C:\Projects\das-apprenticeship-pdf-linker\ApprenticeshipPDFWorker.Core\obj\Debug\ApprenticeshipPDFWorker.Core.pdb
+C:\Projects\das-apprenticeship-pdf-linker\ApprenticeshipPDFWorker.Core\bin\Debug\DatabaseRepository.cs

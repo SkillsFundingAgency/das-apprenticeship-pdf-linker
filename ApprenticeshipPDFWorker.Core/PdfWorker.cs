@@ -2,9 +2,14 @@
 
 namespace ApprenticeshipPDFWorker.Core
 {
-    public class PdfWorker
+    public class PdfWorker : IPdfWorker
     {
-        private readonly IUrlsRepository _repository = new DatabaseRepository();
+        private readonly IDatabaseRepository _repository;
+
+        public PdfWorker(IDatabaseRepository repository)
+        {
+            _repository = repository;
+        }
 
         public void Run()
         {

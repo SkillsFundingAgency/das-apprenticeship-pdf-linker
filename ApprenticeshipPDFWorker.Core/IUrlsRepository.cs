@@ -3,8 +3,8 @@ using ApprenticeshipPDFWorker.Core.Models;
 
 namespace ApprenticeshipPDFWorker.Core
 {
-    public interface IUrlsRepository
+    public interface IDatabaseRepository
     {
-        void Save(IEnumerable<Urls> linkUris);
+        void Save(IEnumerable<Urls> govUkUrls);
     }
 }

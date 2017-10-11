@@ -5,7 +5,7 @@ using ApprenticeshipPDFWorker.Core.Models;
 
 namespace ApprenticeshipPDFWorker.Core.Services
 {
-    public class WebDownloader
+    public class WebDownloader : IWebDownloader
     {
         /// <summary>
         /// Downloads a Page
@@ -21,7 +21,7 @@ namespace ApprenticeshipPDFWorker.Core.Services
             {
                 client.CachePolicy =
                     new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
-
+                new ConsoleLogger().Info($"Downloading {url}");
                 return client.DownloadString(url);
             }
         }

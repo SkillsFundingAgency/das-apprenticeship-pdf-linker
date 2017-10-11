@@ -8,7 +8,7 @@ namespace ApprenticeshipPDFWorker.Core.Services
 {
     // Class to scrape screens for urls
 
-    public class ScreenScraper
+    public class ScreenScraper : IScreenScraper
     {
         public string GetLinkUri(string html, string linkTitle)
         {
@@ -34,18 +34,16 @@ namespace ApprenticeshipPDFWorker.Core.Services
 
         public IEnumerable<Urls> GetLinkUris(IEnumerable<HtmlStandardPage> htmlData)
         {
-            return htmlData.Select(standardEntry => new Urls
+            foreach (var standardEntry in htmlData)
             {
-                AssessmentUrl = GetLinkUri(standardEntry.Html, "Assessment"),
-                StandardCode = standardEntry.StandardCode,
-                StandardUrl = GetLinkUri(standardEntry.Html, "Apprenticeship"),
-            });
-        }
-    }
+                yield return new Urls
+                {
+                    AssessmentUrl = GetLinkUri(standardEntry.Html, "Assessment"),
+                    StandardCode = standardEntry.StandardCode,
+                    StandardUrl = GetLinkUri(standardEntry.Html, "Apprenticeship"),
+                };
 
-    public class HtmlStandardPage
-    {
-        public string StandardCode { get; set; }
-        public string Html { get; set; }
+            }
+        }
     }
 }
