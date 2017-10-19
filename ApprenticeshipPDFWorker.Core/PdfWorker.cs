@@ -17,13 +17,13 @@ namespace ApprenticeshipPDFWorker.Core
             var csvData = new StandardCsvRepository().Read("StandardPages.csv");
 
             // Grabs the urls from the stored csv data
-            var htmlData = new WebDownloader().GetAll(csvData);
+            var htmlDataFromCsv = new WebDownloader().GetAll(csvData);
 
             //scrapes the urls for the pdf urls
-            var linkUris = new ScreenScraper().GetLinkUris(htmlData);
+            var govUkLinks = new ScreenScraper().GetLinkUris(htmlDataFromCsv);
 
             //saves the pdf urls
-            _repository.Save(linkUris);
+            _repository.ProcessPdfUrlsFromGovUk(govUkLinks);
         }
     }
 }

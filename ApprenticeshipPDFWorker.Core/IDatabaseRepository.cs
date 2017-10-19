@@ -5,6 +5,6 @@ namespace ApprenticeshipPDFWorker.Core
 {
     public interface IDatabaseRepository
     {
-        void Save(IEnumerable<Urls> govUkUrls);
+        void ProcessPdfUrlsFromGovUk(IEnumerable<Urls> govUkUrls);
     }
 }

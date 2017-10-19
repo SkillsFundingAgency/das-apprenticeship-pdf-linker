@@ -23,15 +23,12 @@ namespace ApprenticeshipPDFWorker.Core
                 new SqlConnection(
                     "Server=.\\SQLEXPRESS;Database=GovUkApprenticeships;Trusted_Connection=True;MultipleActiveResultSets=True;");
             connection.Open();
-            var urlList = connection.Query<StoredUrls>("SELECT * FROM PdfTable").ToList();
+            var dbUrlRecords = connection.Query<StoredUrls>("SELECT * FROM PdfTable").ToList();
             connection.Close();
-            return urlList;
+            return dbUrlRecords;
         }
         public void InsertChanges(IEnumerable<StoredUrls> linkUris)
         {
-
-            // updateList is populated in the comparison methods, and so only the entries 
-            // which are different between the csv file and the database are updated.
             foreach (var change in linkUris)
             {
                 using (var connection = new DbConnection(ConfigurationManager.ConnectionStrings["GovUk"].ConnectionString))

@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApprenticeshipPDFWorker.Uni
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApprenticeshipPDFWorker.Core", "ApprenticeshipPDFWorker.Core\ApprenticeshipPDFWorker.Core.csproj", "{F5064699-A290-4BF4-AC8D-43DB996CEF3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApprenticeshipPDFWorker.CoreTests", "ApprenticeshipPDFWorker.CoreTests\ApprenticeshipPDFWorker.CoreTests.csproj", "{3BF81809-2E07-4C82-AF06-69B469D7BC31}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{F5064699-A290-4BF4-AC8D-43DB996CEF3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5064699-A290-4BF4-AC8D-43DB996CEF3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5064699-A290-4BF4-AC8D-43DB996CEF3D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3BF81809-2E07-4C82-AF06-69B469D7BC31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3BF81809-2E07-4C82-AF06-69B469D7BC31}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3BF81809-2E07-4C82-AF06-69B469D7BC31}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3BF81809-2E07-4C82-AF06-69B469D7BC31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

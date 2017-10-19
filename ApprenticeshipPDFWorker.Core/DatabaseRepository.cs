@@ -6,24 +6,19 @@ namespace ApprenticeshipPDFWorker.Core
     public class DatabaseRepository : IDatabaseRepository
     {
         private readonly IUrlRecordService _recordService;
-        private readonly IUrlRecordComparer _compararer;
+        private readonly IUrlRecordComparer _comparer;
 
-        public DatabaseRepository(IUrlRecordService recordService, IUrlRecordComparer compararer)
+        public DatabaseRepository(IUrlRecordService recordService, IUrlRecordComparer comparer)
         {
             _recordService = recordService;
-            _compararer = compararer;
+            _comparer = comparer;
         }
 
-        public void Save(IEnumerable<Urls> govUkUrls)
+        public void ProcessPdfUrlsFromGovUk(IEnumerable<Urls> govUkUrls)
         {
-            var existingRecords = _recordService.GetRecordsFromDatabase();
-            var mappedChanges = _compararer.GetChanges(govUkUrls, existingRecords);
+            var dbUrlRecords = _recordService.GetRecordsFromDatabase();
+            var mappedChanges = _comparer.GetChanges(govUkUrls, dbUrlRecords);
             _recordService.InsertChanges(mappedChanges);
         }
     }
 }
-
-
-//REFACTORING = making sure everything makes sense from a readability perspective
-
-// TEST stuff

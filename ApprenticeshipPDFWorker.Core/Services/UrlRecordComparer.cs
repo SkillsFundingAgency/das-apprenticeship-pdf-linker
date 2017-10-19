@@ -7,7 +7,8 @@ namespace ApprenticeshipPDFWorker.Core
 {
     public class UrlRecordComparer : IUrlRecordComparer
     {
-        public IEnumerable<StoredUrls> GetChanges(IEnumerable<Urls> govUkUris, ICollection<StoredUrls> dbUris)
+        public IEnumerable<StoredUrls> 
+            GetChanges(IEnumerable<Urls> govUkUris, ICollection<StoredUrls> dbUris)
         {
             foreach (var uri in govUkUris)
             {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using NUnit.Framework;
 using ApprenticeshipPDFWorker.Core;
 using ApprenticeshipPDFWorker.Core.Models;
@@ -30,7 +26,7 @@ namespace ApprenticeshipPDFWorker.UnitTest.Services
             var sut = new DatabaseRepository(mockRecordService.Object, mockComparer.Object);
 
             // Act
-            sut.Save(new List<Urls>());
+            sut.ProcessPdfUrlsFromGovUk(new List<Urls>());
 
             // Assert
             mockRecordService.VerifyAll();
