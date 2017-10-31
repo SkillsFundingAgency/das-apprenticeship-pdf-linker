@@ -50,6 +50,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DependancyResolution\ComparerRegistry.cs" />
+    <Compile Include="DependancyResolution\CoreRegistry.cs" />
+    <Compile Include="DependancyResolution\IoC.cs" />
+    <Compile Include="DependancyResolution\WebRegistry.cs" />
     <Compile Include="Program.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
