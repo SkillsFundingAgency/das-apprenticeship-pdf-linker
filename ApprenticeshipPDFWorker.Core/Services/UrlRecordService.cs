@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using ApprenticeshipPDFWorker.Core.Models;
+using ApprenticeshipPDFWorker.Core.Settings;
 using Dapper;
 
 namespace ApprenticeshipPDFWorker.Core.Services
@@ -10,27 +11,26 @@ namespace ApprenticeshipPDFWorker.Core.Services
     public class UrlRecordService : IUrlRecordService
     {
         private readonly ILog _log;
+        private readonly IDatabaseSettings _settings;
 
-        public UrlRecordService(ILog log)
+        public UrlRecordService(ILog log, IDatabaseSettings settings)
         {
             _log = log;
+            _settings = settings;
         }
 
         public ICollection<StoredUrls> GetRecordsFromDatabase()
         {
-            var connection =
-                new SqlConnection(
-                    "Server=.\\SQLEXPRESS;Database=GovUkApprenticeships;Trusted_Connection=True;MultipleActiveResultSets=True;");
-            connection.Open();
-            var dbUrlRecords = connection.Query<StoredUrls>("SELECT * FROM PdfTable").ToList();
-            connection.Close();
-            return dbUrlRecords;
+            using (var connection = new DbConnection(_settings.ConnectionString))
+            {
+                return connection.Query<StoredUrls>("SELECT * FROM PdfTable").ToList();
+            }
         }
         public void InsertChanges(IEnumerable<Urls> linkUris)
         {
             foreach (var change in linkUris)
             {
-                using (var connection = new DbConnection(ConfigurationManager.ConnectionStrings["GovUk"].ConnectionString))
+                using (var connection = new DbConnection(_settings.ConnectionString))
                 {
                     connection.Execute(@"
                 INSERT INTO PdfTable 

@@ -82,6 +82,8 @@
     <Compile Include="DatabaseRepository.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Settings\DatabaseSettings.cs" />
+    <Compile Include="Settings\IDatabaseSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
