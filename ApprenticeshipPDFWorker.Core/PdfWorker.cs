@@ -4,26 +4,33 @@ namespace ApprenticeshipPDFWorker.Core
 {
     public class PdfWorker : IPdfWorker
     {
-        private readonly IDatabaseRepository _repository;
+        private readonly IDatabaseRepository _dbRepository;
+        private readonly IStandardCsvRepository _csvRepository;
+        private readonly IWebDownloader _webDownloader;
+        private readonly IScreenScraper _screenScraper;
 
-        public PdfWorker(IDatabaseRepository repository)
+        public PdfWorker(IDatabaseRepository dbRepository, IStandardCsvRepository csvRepository,
+            IWebDownloader webDownloader, IScreenScraper screenScraper)
         {
-            _repository = repository;
+            _dbRepository = dbRepository;
+            _csvRepository = csvRepository;
+            _webDownloader = webDownloader;
+            _screenScraper = screenScraper;
         }
 
         public void Run()
         {
             // Take the data from the CSV file and store it in variable csvData
-            var csvData = new StandardCsvRepository().Read("StandardPages.csv");
+            var csvData = _csvRepository.Read("StandardPages.csv");
 
             // Grabs the urls from the stored csv data
-            var htmlDataFromCsv = new WebDownloader().GetAll(csvData);
+            var htmlDataFromCsv = _webDownloader.GetAll(csvData);
 
             //scrapes the urls for the pdf urls
-            var govUkLinks = new ScreenScraper().GetLinkUris(htmlDataFromCsv);
+            var govUkLinks = _screenScraper.GetLinkUris(htmlDataFromCsv);
 
             //saves the pdf urls
-            _repository.ProcessPdfUrlsFromGovUk(govUkLinks);
+            _dbRepository.ProcessPdfUrlsFromGovUk(govUkLinks);
         }
     }
 }

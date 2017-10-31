@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using ApprenticeshipPDFWorker.Core.Models;
 using Dapper;
 
-namespace ApprenticeshipPDFWorker.Core
+namespace ApprenticeshipPDFWorker.Core.Services
 {
     public class UrlRecordService : IUrlRecordService
     {
@@ -27,7 +26,7 @@ namespace ApprenticeshipPDFWorker.Core
             connection.Close();
             return dbUrlRecords;
         }
-        public void InsertChanges(IEnumerable<StoredUrls> linkUris)
+        public void InsertChanges(IEnumerable<Urls> linkUris)
         {
             foreach (var change in linkUris)
             {
@@ -38,15 +37,15 @@ namespace ApprenticeshipPDFWorker.Core
                   (
                     StandardCode, 
                     StandardUrl, 
-                    AssessmentUrl , 
-                    DateSeen) 
+                    AssessmentUrl
+                    ) 
                 VALUES 
                   (@StandardCode, 
                    @StandardUrl, 
-                   @AssessmentUrl , 
-                   @DateSeen)", change);
+                   @AssessmentUrl
+                    )", change);
 
-                    _log.Info($"Saved update for {change.StandardCode}");
+                    _log.Info($"X-X-X  Saved update for {change.StandardCode}  X-X-X");
                 }
             }
         }

@@ -1,4 +1,4 @@
-namespace ApprenticeshipPDFWorker.Core.Services
+namespace ApprenticeshipPDFWorker.Core.Models
 {
     public class HtmlStandardPage
     {

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using ApprenticeshipPDFWorker.Core.Models;
+using ApprenticeshipPDFWorker.Core.Services;
 
 namespace ApprenticeshipPDFWorker.Core
 {
@@ -14,10 +15,10 @@ namespace ApprenticeshipPDFWorker.Core
             _comparer = comparer;
         }
 
-        public void Save(IEnumerable<Urls> govUkUrls)
+        public void ProcessPdfUrlsFromGovUk(IEnumerable<Urls> govUkUrls)
         {
-            var existingRecords = _recordService.GetRecordsFromDatabase();
-            var mappedChanges = _comparer.GetChanges(govUkUrls, existingRecords);
+            var dbUrlRecords = _recordService.GetRecordsFromDatabase();
+            var mappedChanges = _comparer.GetChanges(govUkUrls, dbUrlRecords);
             _recordService.InsertChanges(mappedChanges);
         }
     }

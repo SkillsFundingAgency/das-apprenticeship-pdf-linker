@@ -6,7 +6,7 @@ namespace ApprenticeshipPDFWorker.Core.Models
     {
         public string StandardCode { get; set; }
         public string StandardUrl { get; set; }
-        public string AssessmentUrl { get; set; }
         public DateTime DateSeen { get; set; }
+        public string AssessmentUrl { get; set; }
     }
 }

@@ -1,9 +1,7 @@
-using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Security.Cryptography.X509Certificates;
 
-namespace ApprenticeshipPDFWorker.Core
+namespace ApprenticeshipPDFWorker.Core.Models
 {
     public class DbConnection : IDbConnection
     {

@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using ApprenticeshipPDFWorker.Core.Models;
 
-namespace ApprenticeshipPDFWorker.Core
+namespace ApprenticeshipPDFWorker.Core.Services
 {
     public class UrlRecordComparer : IUrlRecordComparer
     {
-        public IEnumerable<StoredUrls> 
-            GetChanges(IEnumerable<Urls> govUkUris, ICollection<StoredUrls> dbUris)
+        public IEnumerable<Urls> GetChanges(IEnumerable<Urls> govUkUris, ICollection<StoredUrls> dbUris)
         {
             foreach (var uri in govUkUris)
             {
@@ -16,10 +15,9 @@ namespace ApprenticeshipPDFWorker.Core
                     dbUris.OrderByDescending(x => x.DateSeen).FirstOrDefault(x => x.StandardCode == uri.StandardCode);
                 if (latest == null || uri.StandardUrl != latest.StandardUrl || uri.AssessmentUrl != latest.AssessmentUrl)
                 {
-                    yield return new StoredUrls
+                    yield return new Urls
                     {
                         AssessmentUrl = uri.AssessmentUrl,
-                        DateSeen = DateTime.UtcNow,
                         StandardCode = uri.StandardCode,
                         StandardUrl = uri.StandardUrl
                     };

@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\StoredUrls.cs" />
     <Compile Include="Services\ConsoleLogger.cs" />
     <Compile Include="Models\DbConnection.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
@@ -65,7 +66,6 @@
     <Compile Include="Services\IUrlRecordComparer.cs" />
     <Compile Include="Services\IUrlRecordService.cs" />
     <Compile Include="IDatabaseRepository.cs" />
-    <Compile Include="Models\StoredUrls.cs" />
     <Compile Include="Models\Urls.cs" />
     <Compile Include="Models\HtmlStandardPage.cs" />
     <Compile Include="Services\IScreenScraper.cs" />

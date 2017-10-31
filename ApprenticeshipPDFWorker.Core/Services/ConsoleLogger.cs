@@ -1,6 +1,6 @@
 using System;
 
-namespace ApprenticeshipPDFWorker.Core
+namespace ApprenticeshipPDFWorker.Core.Services
 {
     public class ConsoleLogger : ILog
     {

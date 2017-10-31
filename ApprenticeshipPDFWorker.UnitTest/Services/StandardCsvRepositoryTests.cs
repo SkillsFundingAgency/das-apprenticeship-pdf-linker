@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using ApprenticeshipPDFWorker.Core;
 using ApprenticeshipPDFWorker.Core.Models;
 using ApprenticeshipPDFWorker.Core.Services;
 using NUnit.Framework;
@@ -99,7 +98,7 @@ namespace ApprenticeshipPDFWorker.UnitTest.Services
 
         public static IEnumerable<string> UrlListWorker(IEnumerable<CsvStandardRow> data)
         {
-            return data.Select(pumpkin => pumpkin.UrlLink);
+            return data.Select(x => x.UrlLink);
         }
 
         private static List<CsvStandardRow> CsvStandardRows()

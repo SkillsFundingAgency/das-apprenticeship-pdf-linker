@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using ApprenticeshipPDFWorker.Core.Models;
 
-namespace ApprenticeshipPDFWorker.Core
+namespace ApprenticeshipPDFWorker.Core.Services
 {
     public interface IUrlRecordComparer
     {
-        IEnumerable<StoredUrls> GetChanges(IEnumerable<Urls> govUkUris, ICollection<StoredUrls> dbUris);
+        IEnumerable<Urls> GetChanges(IEnumerable<Urls> govUkUris, ICollection<StoredUrls> dbUris);
     }
 }

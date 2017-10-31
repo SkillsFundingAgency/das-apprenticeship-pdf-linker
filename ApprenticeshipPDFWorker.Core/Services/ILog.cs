@@ -1,4 +1,4 @@
-namespace ApprenticeshipPDFWorker.Core
+namespace ApprenticeshipPDFWorker.Core.Services
 {
     public interface ILog
     {
