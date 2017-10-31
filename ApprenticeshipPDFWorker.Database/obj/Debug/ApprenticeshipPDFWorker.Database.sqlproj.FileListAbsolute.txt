@@ -1,5 +1,0 @@
-C:\Projects\das-apprenticeship-pdf-linker\ApprenticeshipPDFWorker.Database\bin\Debug\ApprenticeshipPDFWorker.Database.dacpac
-C:\Projects\das-apprenticeship-pdf-linker\ApprenticeshipPDFWorker.Database\bin\Debug\ApprenticeshipPDFWorker.Database.dll
-C:\Projects\das-apprenticeship-pdf-linker\ApprenticeshipPDFWorker.Database\bin\Debug\ApprenticeshipPDFWorker.Database.pdb
-C:\Projects\das-apprenticeship-pdf-linker\ApprenticeshipPDFWorker.Database\obj\Debug\ApprenticeshipPDFWorker.Database.dll
-C:\Projects\das-apprenticeship-pdf-linker\ApprenticeshipPDFWorker.Database\obj\Debug\ApprenticeshipPDFWorker.Database.pdb
