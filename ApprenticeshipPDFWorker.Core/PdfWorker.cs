@@ -20,16 +20,12 @@ namespace ApprenticeshipPDFWorker.Core
 
         public void Run()
         {
-            // Take the data from the CSV file and store it in variable csvData
             var csvData = _csvRepository.Read("StandardPages.csv");
 
-            // Grabs the urls from the stored csv data
             var htmlDataFromCsv = _webDownloader.GetAll(csvData);
 
-            //scrapes the urls for the pdf urls
             var govUkLinks = _screenScraper.GetLinkUris(htmlDataFromCsv);
 
-            //saves the pdf urls
             _dbRepository.ProcessPdfUrlsFromGovUk(govUkLinks);
         }
     }

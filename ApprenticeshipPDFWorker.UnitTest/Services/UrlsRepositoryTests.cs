@@ -78,7 +78,7 @@ namespace ApprenticeshipPDFWorker.UnitTest.Services
             var actual = sut.GetChanges(testUrlList, new List<StoredUrls>()).ToList();
 
             // Assert
-            Assert.AreEqual(expected.Count, actual.Count());
+            Assert.AreEqual(expected.Count, actual.Count);
             Assert.AreEqual(expected.FirstOrDefault().StandardCode, actual.First().StandardCode);
             Assert.AreEqual(expected.FirstOrDefault().AssessmentUrl, actual.First().AssessmentUrl);
             Assert.AreEqual(expected.FirstOrDefault().StandardUrl, actual.First().StandardUrl);

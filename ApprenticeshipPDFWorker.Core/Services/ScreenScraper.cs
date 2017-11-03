@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using AngleSharp.Parser.Html;
 using ApprenticeshipPDFWorker.Core.Models;
@@ -12,9 +13,9 @@ namespace ApprenticeshipPDFWorker.Core.Services
     {
         public string GetLinkUri(string html, string linkTitle)
         {
-            var uri = GetLinks(html, ".attachment-details h2 a", linkTitle)?.FirstOrDefault();
+            var uri = GetLinks(html, ConfigurationManager.AppSettings["AttatchmentDetailsString"], linkTitle)?.FirstOrDefault();
 
-            return uri != null ? new Uri(new Uri("https://www.gov.uk"), uri).ToString() : string.Empty;
+           return uri != null ? new Uri(new Uri(ConfigurationManager.AppSettings["GovUkBaseUrl"]), uri).ToString() : string.Empty;
         }
 
 
@@ -28,8 +29,7 @@ namespace ApprenticeshipPDFWorker.Core.Services
                 var result = parser.Parse(html);
                 var all = result.QuerySelectorAll(selector);
 
-            // Return Where value pulls based on a link (attribute "href") contanining the correct keyword
-                return all.Where(x => x.InnerHtml.Contains(textInTitle)||x.InnerHtml.Contains("Assesment")).Select(x => x.GetAttribute("href")).ToList();
+                return all.Where(x => x.InnerHtml.Contains(textInTitle)).Select(x => x.GetAttribute("href")).ToList();
             }
 
         public IEnumerable<Urls> GetLinkUris(IEnumerable<HtmlStandardPage> htmlData)

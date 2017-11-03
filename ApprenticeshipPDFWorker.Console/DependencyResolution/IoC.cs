@@ -1,10 +1,6 @@
-﻿using ApprenticeshipPDFWorker.Console.DependancyResolution;
-using ApprenticeshipPDFWorker.Core;
-using ApprenticeshipPDFWorker.Core.Services;
-using ApprenticeshipPDFWorker.Core.Settings;
-using StructureMap;
+﻿using StructureMap;
 
-namespace ApprenticeshipPDFWorker.Console
+namespace ApprenticeshipPDFWorker.Console.DependencyResolution
 {
     public static class IoC
     {

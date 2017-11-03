@@ -7,7 +7,6 @@ namespace ApprenticeshipPDFWorker.Core.Services
 {
     public class StandardCsvRepository : IStandardCsvRepository
     {
-        // Method to read data from csv file
         public IEnumerable<CsvStandardRow> Read(string fileName)
         {
             var streamReader = File.OpenText(fileName);

@@ -1,13 +1,8 @@
 ﻿using StructureMap;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ApprenticeshipPDFWorker.Core;
 using ApprenticeshipPDFWorker.Core.Settings;
 
-namespace ApprenticeshipPDFWorker.Console.DependancyResolution
+namespace ApprenticeshipPDFWorker.Console.DependencyResolution
 {
     class CoreRegistry : Registry
 

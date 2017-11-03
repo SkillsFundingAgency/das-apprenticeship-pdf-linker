@@ -4,12 +4,7 @@
     {
         public static string RemoveQuotationMark(this string str)
         {
-            if (str == null)
-            {
-                return string.Empty;
-            }
-
-            return str.Replace("\"", string.Empty);
+            return str?.Replace("\"", string.Empty) ?? string.Empty;
         }
     }
 }

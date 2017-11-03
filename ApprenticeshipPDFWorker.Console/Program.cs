@@ -1,4 +1,5 @@
 ﻿using ApprenticeshipPDFWorker.Core;
+using ApprenticeshipPDFWorker.Console.DependencyResolution;
 
 namespace ApprenticeshipPDFWorker.Console
 {    

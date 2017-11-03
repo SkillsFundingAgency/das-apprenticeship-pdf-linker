@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
 using System.Linq;
 using ApprenticeshipPDFWorker.Core.Models;
 using ApprenticeshipPDFWorker.Core.Settings;
@@ -23,7 +21,7 @@ namespace ApprenticeshipPDFWorker.Core.Services
         {
             using (var connection = new DbConnection(_settings.ConnectionString))
             {
-                return connection.Query<StoredUrls>("SELECT * FROM PdfTable").ToList();
+                return connection.Query<StoredUrls>("SELECT StandardCode, StandardUrl, AssessmentUrl, DateSeen FROM PdfTable").ToList();
             }
         }
         public void InsertChanges(IEnumerable<Urls> linkUris)

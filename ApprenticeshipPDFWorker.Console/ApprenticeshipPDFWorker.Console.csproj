@@ -41,6 +41,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -50,10 +51,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DependancyResolution\ComparerRegistry.cs" />
-    <Compile Include="DependancyResolution\CoreRegistry.cs" />
-    <Compile Include="DependancyResolution\IoC.cs" />
-    <Compile Include="DependancyResolution\WebRegistry.cs" />
+    <Compile Include="DependencyResolution\ComparerRegistry.cs" />
+    <Compile Include="DependencyResolution\CoreRegistry.cs" />
+    <Compile Include="DependencyResolution\IoC.cs" />
+    <Compile Include="DependencyResolution\WebRegistry.cs" />
     <Compile Include="Program.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
