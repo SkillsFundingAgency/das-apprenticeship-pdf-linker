@@ -38,9 +38,9 @@ namespace ApprenticeshipPDFWorker.Core.Services
             {
                 yield return new Urls
                 {
-                    AssessmentUrl = GetLinkUri(standardEntry.Html, "Assessment"),
+                    AssessmentUrl = GetLinkUri(standardEntry.Html, ConfigurationManager.AppSettings["FrameworkKeywordString"]),
                     StandardCode = standardEntry.StandardCode,
-                    StandardUrl = GetLinkUri(standardEntry.Html, "Apprenticeship"),
+                    StandardUrl = GetLinkUri(standardEntry.Html, ConfigurationManager.AppSettings["StandardKeywordString"]),
                 };
 
             }

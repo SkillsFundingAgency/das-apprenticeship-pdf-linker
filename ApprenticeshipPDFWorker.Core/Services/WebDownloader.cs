@@ -8,12 +8,12 @@ namespace ApprenticeshipPDFWorker.Core.Services
     public class WebDownloader : IWebDownloader
     {
         /// <summary>
-        /// Downloads a Page
+        /// Downloads a single page which then is populated into a list of all pages
         /// </summary>
         /// <param name="url"></param>
-        /// <exception cref="WebException"></exception>
-        /// <exception cref="NotSupportedException"></exception>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="WebException"> Thrown when page attempted cannot be accessed </exception>
+        /// <exception cref="NotSupportedException"> Thrown when passed or used for an unsupported purpose </exception>
+        /// <exception cref="ArgumentNullException"> Thrown when passed a null </exception>
         /// <returns></returns>
         public string Get(string url)
         {
