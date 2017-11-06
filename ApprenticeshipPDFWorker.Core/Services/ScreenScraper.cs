@@ -13,7 +13,7 @@ namespace ApprenticeshipPDFWorker.Core.Services
     {
         public string GetLinkUri(string html, string linkTitle)
         {
-            var uri = GetLinks(html, ConfigurationManager.AppSettings["AttatchmentDetailsString"], linkTitle)?.FirstOrDefault();
+            var uri = GetLinks(html, ConfigurationManager.AppSettings["AttachmentDetailsString"], linkTitle)?.FirstOrDefault();
 
            return uri != null ? new Uri(new Uri(ConfigurationManager.AppSettings["GovUkBaseUrl"]), uri).ToString() : string.Empty;
         }
@@ -38,9 +38,9 @@ namespace ApprenticeshipPDFWorker.Core.Services
             {
                 yield return new Urls
                 {
-                    AssessmentUrl = GetLinkUri(standardEntry.Html, "Assessment"),
+                    AssessmentUrl = GetLinkUri(standardEntry.Html, ConfigurationManager.AppSettings["FrameworkKeywordString"]),
                     StandardCode = standardEntry.StandardCode,
-                    StandardUrl = GetLinkUri(standardEntry.Html, "Apprenticeship"),
+                    StandardUrl = GetLinkUri(standardEntry.Html, ConfigurationManager.AppSettings["StandardKeywordString"]),
                 };
 
             }
