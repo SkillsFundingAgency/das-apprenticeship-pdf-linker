@@ -7,6 +7,8 @@ namespace ApprenticeshipPDFWorker.Core.Services
 {
     public class WebDownloader : IWebDownloader
     {
+        private readonly ILog _log;
+
         /// <summary>
         /// Downloads a single page which then is populated into a list of all pages
         /// </summary>
@@ -15,13 +17,17 @@ namespace ApprenticeshipPDFWorker.Core.Services
         /// <exception cref="NotSupportedException"> Thrown when passed or used for an unsupported purpose </exception>
         /// <exception cref="ArgumentNullException"> Thrown when passed a null </exception>
         /// <returns></returns>
+        public WebDownloader (ILog log)
+        {
+            _log = log;
+        }
         public string Get(string url)
         {
             using (var client = new WebClient())
             {
                 client.CachePolicy =
                     new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
-                new ConsoleLogger().Info($"Downloading {url}");
+                _log.Info($"Downloading {url}");
                 return client.DownloadString(url);
             }
         }
