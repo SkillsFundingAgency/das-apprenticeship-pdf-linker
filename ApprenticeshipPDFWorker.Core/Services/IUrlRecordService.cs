@@ -7,5 +7,6 @@ namespace ApprenticeshipPDFWorker.Core.Services
     {
         ICollection<StoredUrls> GetRecordsFromDatabase();
         void InsertChanges(IEnumerable<Urls> linkUris);
+        string ChangeCountMessageBuilder();
     }
 }

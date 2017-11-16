@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ApprenticeshipPDFWorker.Core.Models;
 using ApprenticeshipPDFWorker.Core.Settings;
 using Dapper;
+using SFA.DAS.NLog.Logger;
 
 namespace ApprenticeshipPDFWorker.Core.Services
 {
@@ -10,6 +12,7 @@ namespace ApprenticeshipPDFWorker.Core.Services
     {
         private readonly ILog _log;
         private readonly IDatabaseSettings _settings;
+        private int updateCount;
 
         public UrlRecordService(ILog log, IDatabaseSettings settings)
         {
@@ -43,9 +46,20 @@ namespace ApprenticeshipPDFWorker.Core.Services
                    @AssessmentUrl
                     )", change);
 
-                    _log.Info($"X-X-X  Saved update for {change.StandardCode}  X-X-X");
+                    _log.Debug($"Updated Urls in Database for Standard Code: {change.StandardCode}");
+                    updateCount += 1;
                 }
             }
+        }
+
+        public string ChangeCountMessageBuilder()
+        {
+            if (updateCount == 1)
+            {
+                return $"{updateCount} record updated in the database.";
+            }
+
+            return $"{updateCount} records updated in the database.";
         }
     }
 }

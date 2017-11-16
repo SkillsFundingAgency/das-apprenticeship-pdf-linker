@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using ApprenticeshipPDFWorker.Core.Models;
+using SFA.DAS.NLog.Logger;
 
 namespace ApprenticeshipPDFWorker.Core.Services
 {
@@ -12,7 +13,6 @@ namespace ApprenticeshipPDFWorker.Core.Services
         /// <summary>
         /// Downloads a single page which then is populated into a list of all pages
         /// </summary>
-        /// <param name="url"></param>
         /// <exception cref="WebException"> Thrown when page attempted cannot be accessed </exception>
         /// <exception cref="NotSupportedException"> Thrown when passed or used for an unsupported purpose </exception>
         /// <exception cref="ArgumentNullException"> Thrown when passed a null </exception>
@@ -27,7 +27,7 @@ namespace ApprenticeshipPDFWorker.Core.Services
             {
                 client.CachePolicy =
                     new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
-                _log.Info($"Downloading {url}");
+                _log.Debug($"Downloading {url}");
                 return client.DownloadString(url);
             }
         }

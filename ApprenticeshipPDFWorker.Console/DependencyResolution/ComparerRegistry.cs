@@ -9,7 +9,6 @@ namespace ApprenticeshipPDFWorker.Console.DependencyResolution
         {
             For<IUrlRecordService>().Use<UrlRecordService>();
             For<IUrlRecordComparer>().Use<UrlRecordComparer>();
-            For<ILog>().Use<ConsoleLogger>();
         }
     }
 }
